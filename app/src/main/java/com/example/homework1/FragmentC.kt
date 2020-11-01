@@ -1,5 +1,6 @@
 package com.example.homework1
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ class FragmentC : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        view?.setBackgroundColor(Color.WHITE)
 
         btnMainFragment.setOnClickListener { clearBackStack() }
     }

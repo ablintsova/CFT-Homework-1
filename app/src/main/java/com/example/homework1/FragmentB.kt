@@ -1,5 +1,6 @@
 package com.example.homework1
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class FragmentB : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        view?.setBackgroundColor(Color.WHITE)
 
         btnFragmentC.setOnClickListener { openFragment(FragmentC.newInstance()) }
     }
@@ -30,7 +32,7 @@ class FragmentB : Fragment() {
     private fun openFragment(fragment: Fragment) {
         fragmentManager?.let {
             it.beginTransaction()
-                .replace(R.id.container, fragment)
+                .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit()
             }

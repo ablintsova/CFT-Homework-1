@@ -25,14 +25,14 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         btnFragmentB.setOnClickListener { openFragment(FragmentB.newInstance()) }
-        btnBgService.setOnClickListener {}
+        btnBgService.setOnClickListener { openFragment(BgServiceFragment.newInstance())}
         btnContacts.setOnClickListener {}
     }
 
     private fun openFragment(fragment: Fragment) {
         fragmentManager?.let {
             it.beginTransaction()
-                .replace(R.id.container, fragment)
+                .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit()
         }
