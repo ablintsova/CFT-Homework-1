@@ -39,6 +39,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="16dp"
-            tools:text="Состояние сервиса" />
+            tools:text="Состояние сервиса"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

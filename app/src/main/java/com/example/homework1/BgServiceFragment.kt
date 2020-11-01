@@ -1,6 +1,5 @@
 package com.example.homework1
 
-import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -9,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.fragment_bg_service.*
 
 class BgServiceFragment : Fragment() {
@@ -35,32 +35,29 @@ class BgServiceFragment : Fragment() {
 
         btnStartService.setOnClickListener {
             context?.startService(intent)
+            configureReceiver()
             btnStartService.isEnabled = false
         }
 
         btnStopService.setOnClickListener {
             context?.stopService(intent)
+            LocalBroadcastManager.getInstance(this.requireContext()).unregisterReceiver(receiver)
+            updateUI("Закончили считать манулов")
             btnStartService.isEnabled = true
         }
-
-        configureReceiver()
     }
 
     private fun configureReceiver() {
         val filter = IntentFilter()
-        filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
-        context?.registerReceiver(receiver, filter)
+        filter.addAction("send_broadcast")
+        LocalBroadcastManager.getInstance(this.requireContext()).registerReceiver(receiver, filter)
     }
 
     private fun updateUI(text: String) {
         tvServiceState.text = text
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        context?.unregisterReceiver(receiver)
-    }
-
+    // Just in case
     /*private fun isServiceRunning(serviceClass: JavaLangClass<*>): Boolean {
         val service = ActivityManager.RunningServiceInfo().service ?: return false
         return service.className == serviceClass.name

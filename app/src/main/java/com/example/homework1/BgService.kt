@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -24,18 +25,17 @@ class BgService : Service() {
     private val notificationManager: NotificationManager by lazy {
         getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     }
+    private var currentIntent: Intent? = null
     private lateinit var future: ScheduledFuture<*>
     override fun onBind(p0: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        createNotificationChannel()
+        currentIntent = intent
         val handler = Handler(Looper.getMainLooper())
 
+        createNotificationChannel()
         startNotifications(handler)
-
-        intent?.putExtra(SERVICE_STATE, "Начали считать манулов")
-        intent?.action = Intent.ACTION_AIRPLANE_MODE_CHANGED
-        sendBroadcast(intent)
+        sendServiceStateToFragment("Начали считать манулов")
 
         return START_STICKY
     }
@@ -82,6 +82,12 @@ class BgService : Service() {
         }
     }
 
+    private fun sendServiceStateToFragment(text: String) {
+        currentIntent?.putExtra(SERVICE_STATE, text)
+        currentIntent?.action = "send_broadcast"
+        currentIntent?.let { LocalBroadcastManager.getInstance(this).sendBroadcast(it) }
+    }
+
     private fun getManuls(manulCount: Int): String =
         if (manulCount % 100 in 11..14) {
             "манулов"
@@ -99,5 +105,4 @@ class BgService : Service() {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
         notificationManager?.cancel(REQUEST_CODE)
     }
-
 }
