@@ -17,6 +17,7 @@ class BgService : Service() {
     private companion object {
         const val DEFAULT_CHANNEL_ID = "0"
         const val REQUEST_CODE = 111
+        const val SERVICE_STATE = "service_state"
     }
 
     private val executorService = Executors.newSingleThreadScheduledExecutor()
@@ -31,6 +32,10 @@ class BgService : Service() {
         val handler = Handler(Looper.getMainLooper())
 
         startNotifications(handler)
+
+        intent?.putExtra(SERVICE_STATE, "Начали считать манулов")
+        intent?.action = Intent.ACTION_AIRPLANE_MODE_CHANGED
+        sendBroadcast(intent)
 
         return START_STICKY
     }
