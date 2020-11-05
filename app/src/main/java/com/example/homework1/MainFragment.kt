@@ -25,8 +25,8 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         btnFragmentB.setOnClickListener { openFragment(FragmentB.newInstance()) }
-        btnBgService.setOnClickListener { openFragment(BgServiceFragment.newInstance())}
-        btnContacts.setOnClickListener {}
+        btnBgService.setOnClickListener { openFragment(BgServiceFragment.newInstance()) }
+        btnContacts.setOnClickListener { openFragment(ContactsFragment.newInstance()) }
     }
 
     private fun openFragment(fragment: Fragment) {
