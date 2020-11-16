@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.contacts
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.homework1.R
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
 

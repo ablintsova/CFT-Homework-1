@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.navigation
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_b.*
+import androidx.fragment.app.FragmentManager
+import com.example.homework1.R
+import kotlinx.android.synthetic.main.fragment_c.*
 
-class FragmentB : Fragment() {
+class FragmentC : Fragment() {
 
     companion object {
-        fun newInstance() = FragmentB()
+        fun newInstance() = FragmentC()
     }
 
     override fun onCreateView(
@@ -19,22 +21,24 @@ class FragmentB : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b, container, false)
+        return inflater.inflate(R.layout.fragment_c, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         view?.setBackgroundColor(Color.WHITE)
 
-        btnFragmentC.setOnClickListener { openFragment(FragmentC.newInstance()) }
+        btnMainFragment.setOnClickListener { clearBackStack() }
     }
 
-    private fun openFragment(fragment: Fragment) {
+    private fun clearBackStack() {
         fragmentManager?.let {
-            it.beginTransaction()
-                .add(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit()
+            if (it.backStackEntryCount > 0) {
+                it.popBackStack(
+                    it.getBackStackEntryAt(0).id,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE
+                )
             }
         }
     }
+}

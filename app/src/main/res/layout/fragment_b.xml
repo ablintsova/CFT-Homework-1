@@ -3,13 +3,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FragmentB">
+        tools:context=".navigation.FragmentB">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
             android:id="@+id/btnFragmentC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Перейти к фрагменту С" />
+            android:text="@string/btnFragmentC_text" />
 
 </FrameLayout>

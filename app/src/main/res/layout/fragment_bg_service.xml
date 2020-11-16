@@ -4,13 +4,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".BgServiceFragment"
+        tools:context=".service.BgServiceFragment"
         android:backgroundTint="#FFFFFF"
         android:backgroundTintMode="screen">
 
 
     <Button
-            android:text="Запустить сервис"
+            android:text="@string/btnStartService_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/btnStartService"
@@ -20,7 +20,7 @@
             android:layout_marginTop="16dp" />
 
     <Button
-            android:text="Остановить сервис"
+            android:text="@string/btnStopService_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/btnStopService"

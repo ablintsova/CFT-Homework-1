@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.service
 
 import android.content.Intent
 import android.content.IntentFilter
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.homework1.R
 import kotlinx.android.synthetic.main.fragment_bg_service.*
 
 class BgServiceFragment : Fragment() {
@@ -42,7 +43,7 @@ class BgServiceFragment : Fragment() {
         btnStopService.setOnClickListener {
             context?.stopService(intent)
             LocalBroadcastManager.getInstance(this.requireContext()).unregisterReceiver(receiver)
-            updateUI("Закончили считать манулов")
+            updateUI(getString(R.string.finished_to_count_manuls))
             btnStartService.isEnabled = true
         }
     }

@@ -1,4 +1,4 @@
-package com.example.homework1
+package com.example.homework1.service
 
 import android.app.*
 import android.content.Context
@@ -9,6 +9,8 @@ import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.homework1.main.MainActivity
+import com.example.homework1.R
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -35,7 +37,7 @@ class BgService : Service() {
 
         createNotificationChannel()
         startNotifications(handler)
-        sendServiceStateToFragment("Начали считать манулов")
+        sendServiceStateToFragment(getString(R.string.began_to_count_manuls))
 
         return START_STICKY
     }
@@ -62,7 +64,7 @@ class BgService : Service() {
         return NotificationCompat.Builder(this, DEFAULT_CHANNEL_ID)
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle("Считаем манулов")
+            .setContentTitle(getString(R.string.counting_manuls))
             .setContentText(text)
             .setNotificationSilent()
             .build()
