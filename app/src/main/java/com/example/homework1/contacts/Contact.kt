@@ -1,4 +1,12 @@
 package com.example.homework1.contacts
 
-class Contact(var name: String, var number: String) {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+class Contact(
+    @PrimaryKey
+    var id: String,
+    var name: String,
+    var number: String
+)

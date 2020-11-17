@@ -1,14 +1,15 @@
 package com.example.homework1.contacts
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.homework1.R
 
 
-class ContactRecyclerViewAdapter(private var values: List<Contact>) : RecyclerView.Adapter<ContactRecyclerViewAdapter.ViewHolder>() {
+class ContactRecyclerViewAdapter(private var values: List<Contact>) :
+    RecyclerView.Adapter<ContactRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
